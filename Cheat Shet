@@ -11,7 +11,7 @@ $git git init <- --Se crea un nuevo .git en el mkdir
 $git git init --bare repositorio.git <- --El parametros --bare permite crear un repositorio desnudo,
       --es decir, donse sólo se pueden enviar cambios desde otro repositorio
 ---CLONAR_PROYECTO_GIT-----
-$git clone https://github.com/GilbertoHdz/adminExport.git
+$git clone https://github.com/GilbertoHdz/nombreProyecto.git
 ---DIRECTORIO_PROYECTO_GIT-----
 $touch main.c <- --Se crean archivos .c para hacer pruebas
 $touch funciones.c
