@@ -139,3 +139,7 @@ $git pull --rebase <--Si tenemos cambios que no queremos perder, al hacer pull
 
 $git reset HEAD --hard  <-REstablecer todo, antes hacer commit 
 
+
+------Recursos Exteriores-----------
+HiperLink en Readme.md
+https://www.quora.com/How-do-I-create-a-hyperlink-in-the-README-file-in-my-GitHub-account-which-would-redirect-to-a-new-page-containing-the-project-explanation
