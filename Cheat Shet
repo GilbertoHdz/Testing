@@ -1,0 +1,137 @@
+--GitBASH
+$ls <- --Desplegar la lista de directorios.
+$mkdir [testgit] <- --Crear un nuevo directorio [test].
+$cd testgit <- --Posicionarnos en ese directorio creado.
+$git <- --Visualizar todos los comandos de GIT
+---CONFIGURAR_GIT-----
+$git config --global user.name "Gilberto Hernández"
+$git config --global user.email "<killer.krazydevil@gmail.com>"
+---NUEVO_PROYECTO_GIT-----
+$git git init <- --Se crea un nuevo .git en el mkdir
+$git git init --bare repositorio.git <- --El parametros --bare permite crear un repositorio desnudo,
+      --es decir, donse sólo se pueden enviar cambios desde otro repositorio
+---CLONAR_PROYECTO_GIT-----
+$git clone https://github.com/GilbertoHdz/adminExport.git
+---DIRECTORIO_PROYECTO_GIT-----
+$touch main.c <- --Se crean archivos .c para hacer pruebas
+$touch funciones.c
+
+---StagingIndex_PROYECTO_GIT (Añadirlos al indice)-----
+$git add main.c <- --Añadir un solo archivo
+$git add . <- --Añadir todos los archivos
+$git status <- --Lista los archivos que estan añadidos listos para el siguiente commit o que un no han sido añadidos.
+
+---SUBIR_CAMBIOS_GIT (Añadirlos al repositorio)-----
+$git commit <- --Al ejecutar este comando se habrira el editor de texto de consola.
+--Por defecto mostrara un texto de muestra, para hacer un commit, existen normas:
+--Primero hacerte 3 preguntas: 
+-- 1.-¿Por qué has hecho este cambio? (Ej.: Corregir bug, Implementar caso de uso o una historia de usuario, etc.)
+-- 2.-¿Qué cambios has hecho? Y describirlos un poco, mostrando los principales cambios hecho al sistema. (No describir todo, solo lo importante)
+-- 3.-¿Qué consecuencias esperas que tenga el cambio? (Caracteristicas en concreto o bien este cambio afectara enque los módulos se comunican).
+
+--CONVENCION PARA LOS MENSAJES:
+--Primer línea del mensaje: es el resumen del commit. No debe tener mas de 50 Caracteres. Es común escribirlo en imperativo (Ej.:"Añade x", "Corrige y").
+--Segunda línea del mensaje: en blanco, es solo un salto de linea
+--Tercela linea: Cuerpo del mensaje. Se colocan saltos de línea a mano y no se deja que cada línea tenga más de 72 caractares.
+--Ej.:
+--Añade funciones de cálculo
+
+--Esta cambio agrega funciones para hacer cálcuñps con los números que
+--el usuario proporcione. con estas funciones se espera poder manipular
+--todos los datos que se necesitan para crear los informes mensuales.
+
+--Se crea un conjunto de funciones que realizan las cuatro operaciones
+--selementales: suma, resta, multiplicación, división. Las tres primeras
+--aceptan dos números enteros y devuelven un número entero. La función
+--división acepta dos números enteros y un puntero a número entero 
+--donde se guardará el resultado y devuelve un número distinto de cero
+
+--Una vez hecho esto, solo hace falta guardar los cambios y cerrar el editor
+:wq <- --Git detectara que se ha escrito el msj y hara el commit
+
+---ELIMINAR_ARCHIVOS_GIT (RM para ser eliminados en el prox commit)-----
+$rm [nombArchivo]
+$git status <-- -- Mostrara que el archivo ah quedado marcado
+$git rm [nombArchivi] <-- --Con esto indicamos que sera eliminado del sistema tambien
+$git commit [enter]
+
+Eliminar el archivo [nombArchivo]
+
+Esto solo es una muestra de como eliminar, pero no es lo mas 
+indicado, solo es para ilustrar el ejemplo.
+:wq
+
+---DESHACER CAMBIOS_GIT (RM para ser eliminados en el prox commit)-----
+$git add [unico nombre de archivo o varios con (.)]
+$git status 
+  modified: [main.c]
+$git HEAD main.c <-- Resetear cambios del add
+$git status <-- Mostrara el archivo en verde
+$git checkout -- main.c <-- Deja el archivo a como estaba originalmente antes de editarlo
+
+---EXAMINAR LOS REGISTROS (Historial de los commits y contenido de los msjs)-----
+$git log
+  Para dejar de ver los commits salir con la letra Q
+$gil log --oneline <-- Ver lo mismo pero en una linea 
+
+---CREAR -RAMAS ()-----
+$git branch rama_a <-- Crear una rama apartir de master
+$git branch <--Listar las Ramas
+  rama_a
+   *master <--Nos muestra la rama donde estamos y la marca con un *
+$git checkout rama_a <--Nos movemos a rama_a
+$git checkout -b rama_b <--Creamos y nos movemos a otra rama desde rama_a siendo rama_a la rama padre
+$git branch -d rama_a <--Eliminar la rama_a
+
+---FUSIONAR -RAMAS ()-----
+$git branch
+ *imprimir
+  master
+$git log --oneline --decorate <-- Visualizamos que queremos mesclar la rama imprimir con la master
+98ejr0 (HEAD, imprimir) Imprime suma por pantalla
+09823l (master) Actualiza el Makefile
+
+$git checkout master <--Nos movemos a la rama master
+$git merge imprimir <--Indicamos que queremos mesclar imprimir
+
+Nota: si hay errores al fusionar los commit por que se han tocado las mismas lineas de codigo
+  abrir el archivo y dejar solo la linea que se desee y hacer el add [. u archivo], git ara 
+  el commit solito y dejara de marcar error.
+
+---EXAMINAR COMMIT PREVIOS(podemos ir a un commit anterior y trabajar apartir de ello con otra nueva rama)-----
+$git log --oneline
+iuh546 Alguna suma algebraica
+o345in Prueba de jade
+98ufi4 Integración con Stylus
+35ioje Mejor Less
+$git checkout o345in <-- Nos movemos a este commit y podemos seguir apartir de aquí con otra rama, por si algo salio mal en el futuro
+$ls <--Lista tal cual estaba el codigo en ese momento del commit
+$git checkout master <--Nos devuelve a donde estamos actualmente, en el seguimiento de pila.
+
+---CREANDO -TAGS (alias para commits en concreto)-----
+$git log --oneline
+iuh546 Alguna suma algebraica
+o345in Prueba de jade
+98ufi4 Integración con Stylus <--Le colocaremos un tag
+35ioje Mejor Less
+k489e4 Se integra express
+$git tag v1.0 <--Le agrega un tag al commit en el que estamos situados
+$git tag v0.1 98ufi4
+$git tag <--Lista de tag
+$git checkout v0.1 <--Nos movemos a este punto anterior 
+
+---PUSH A REPOSITORIOS REMOTOS (pueden ser repositorios locales(Dropbox) o internet (git en su caso))-----
+$git remote add origin -/Dropbox/repositorio.git
+$git push origin master[u otras ramas]
+
+---ACTUALIZAR REPOSITORIOS CON EL COMANDO PULLL ()-----
+$git branch --all <--Muestra las ramas locales y remotas
+  correccion
+ *master
+  remotes/origin/master  <--La Rama remota
+$git pull origin master <--Descargar los cambios del repositorio remoto, a local
+$git pull --rebase <--Si tenemos cambios que no queremos perder, al hacer pull
+
+
+$git reset HEAD --hard  <-REstablecer todo, antes hacer commit 
+
