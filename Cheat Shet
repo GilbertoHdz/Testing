@@ -1,27 +1,31 @@
---GitBASH
+-----GitBASH
 $ls <- --Desplegar la lista de directorios.
 $mkdir [testgit] <- --Crear un nuevo directorio [test].
 $cd testgit <- --Posicionarnos en ese directorio creado.
 $git <- --Visualizar todos los comandos de GIT
----CONFIGURAR_GIT-----
+
+-----CONFIGURAR_GIT-----
 $git config --global user.name "Gilberto Hernández"
 $git config --global user.email "<killer.krazydevil@gmail.com>"
----NUEVO_PROYECTO_GIT-----
+
+-----NUEVO_PROYECTO_GIT-----
 $git git init <- --Se crea un nuevo .git en el mkdir
 $git git init --bare repositorio.git <- --El parametros --bare permite crear un repositorio desnudo,
       --es decir, donse sólo se pueden enviar cambios desde otro repositorio
----CLONAR_PROYECTO_GIT-----
+
+-----CLONAR_PROYECTO_GIT-----
 $git clone https://github.com/GilbertoHdz/nombreProyecto.git
----DIRECTORIO_PROYECTO_GIT-----
+
+-----DIRECTORIO_PROYECTO_GIT-----
 $touch main.c <- --Se crean archivos .c para hacer pruebas
 $touch funciones.c
 
----StagingIndex_PROYECTO_GIT (Añadirlos al indice)-----
+-----StagingIndex_PROYECTO_GIT (Añadirlos al indice)-----
 $git add main.c <- --Añadir un solo archivo
 $git add . <- --Añadir todos los archivos
 $git status <- --Lista los archivos que estan añadidos listos para el siguiente commit o que un no han sido añadidos.
 
----SUBIR_CAMBIOS_GIT (Añadirlos al repositorio)-----
+-----SUBIR_CAMBIOS_GIT (Añadirlos al repositorio)-----
 $git commit <- --Al ejecutar este comando se habrira el editor de texto de consola.
 --Por defecto mostrara un texto de muestra, para hacer un commit, existen normas:
 --Primero hacerte 3 preguntas: 
@@ -49,7 +53,7 @@ $git commit <- --Al ejecutar este comando se habrira el editor de texto de conso
 --Una vez hecho esto, solo hace falta guardar los cambios y cerrar el editor
 :wq <- --Git detectara que se ha escrito el msj y hara el commit
 
----ELIMINAR_ARCHIVOS_GIT (RM para ser eliminados en el prox commit)-----
+-----ELIMINAR_ARCHIVOS_GIT (RM para ser eliminados en el prox commit)-----
 $rm [nombArchivo]
 $git status <-- -- Mostrara que el archivo ah quedado marcado
 $git rm [nombArchivi] <-- --Con esto indicamos que sera eliminado del sistema tambien
@@ -61,7 +65,7 @@ Esto solo es una muestra de como eliminar, pero no es lo mas
 indicado, solo es para ilustrar el ejemplo.
 :wq
 
----DESHACER CAMBIOS_GIT (RM para ser eliminados en el prox commit)-----
+-----DESHACER CAMBIOS_GIT (RM para ser eliminados en el prox commit)-----
 $git add [unico nombre de archivo o varios con (.)]
 $git status 
   modified: [main.c]
@@ -69,12 +73,12 @@ $git HEAD main.c <-- Resetear cambios del add
 $git status <-- Mostrara el archivo en verde
 $git checkout -- main.c <-- Deja el archivo a como estaba originalmente antes de editarlo
 
----EXAMINAR LOS REGISTROS (Historial de los commits y contenido de los msjs)-----
+-----EXAMINAR LOS REGISTROS (Historial de los commits y contenido de los msjs)-----
 $git log
   Para dejar de ver los commits salir con la letra Q
 $gil log --oneline <-- Ver lo mismo pero en una linea 
 
----CREAR -RAMAS ()-----
+-----CREAR -RAMAS ()-----
 $git branch rama_a <-- Crear una rama apartir de master
 $git branch <--Listar las Ramas
   rama_a
@@ -83,7 +87,7 @@ $git checkout rama_a <--Nos movemos a rama_a
 $git checkout -b rama_b <--Creamos y nos movemos a otra rama desde rama_a siendo rama_a la rama padre
 $git branch -d rama_a <--Eliminar la rama_a
 
----FUSIONAR -RAMAS ()-----
+-----FUSIONAR -RAMAS ()-----
 $git branch
  *imprimir
   master
@@ -98,7 +102,7 @@ Nota: si hay errores al fusionar los commit por que se han tocado las mismas lin
   abrir el archivo y dejar solo la linea que se desee y hacer el add [. u archivo], git ara 
   el commit solito y dejara de marcar error.
 
----EXAMINAR COMMIT PREVIOS(podemos ir a un commit anterior y trabajar apartir de ello con otra nueva rama)-----
+-----EXAMINAR COMMIT PREVIOS(podemos ir a un commit anterior y trabajar apartir de ello con otra nueva rama)-----
 $git log --oneline
 iuh546 Alguna suma algebraica
 o345in Prueba de jade
@@ -108,7 +112,7 @@ $git checkout o345in <-- Nos movemos a este commit y podemos seguir apartir de a
 $ls <--Lista tal cual estaba el codigo en ese momento del commit
 $git checkout master <--Nos devuelve a donde estamos actualmente, en el seguimiento de pila.
 
----CREANDO -TAGS (alias para commits en concreto)-----
+-----CREANDO -TAGS (alias para commits en concreto)-----
 $git log --oneline
 iuh546 Alguna suma algebraica
 o345in Prueba de jade
@@ -120,11 +124,11 @@ $git tag v0.1 98ufi4
 $git tag <--Lista de tag
 $git checkout v0.1 <--Nos movemos a este punto anterior 
 
----PUSH A REPOSITORIOS REMOTOS (pueden ser repositorios locales(Dropbox) o internet (git en su caso))-----
+-----PUSH A REPOSITORIOS REMOTOS (pueden ser repositorios locales(Dropbox) o internet (git en su caso))-----
 $git remote add origin -/Dropbox/repositorio.git
 $git push origin master[u otras ramas]
 
----ACTUALIZAR REPOSITORIOS CON EL COMANDO PULLL ()-----
+-----ACTUALIZAR REPOSITORIOS CON EL COMANDO PULLL ()-----
 $git branch --all <--Muestra las ramas locales y remotas
   correccion
  *master
